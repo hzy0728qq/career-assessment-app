@@ -6,24 +6,54 @@
   html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-slate-50 text-slate-800 font-sans antialiased;
-    /* 适配 iOS 安全区域 */
-    padding-top: env(safe-area-inset-top);
+    @apply bg-slate-100 text-slate-800 font-sans antialiased;
+    /* iOS 安全区域:使用 var() 包裹,避免在桌面端造成顶部空白 */
+    padding-top: 0;
   }
 
-  /* 阻止移动端输入时页面缩放 */
+  /* 仅在移动端(宽度 ≤ max-w-md)时启用状态栏安全区 padding-top */
+  @media (max-width: 448px) {
+    body {
+      padding-top: env(safe-area-inset-top, 0);
+    }
+  }
+
+  /* 阻止移动端输入聚焦时页面缩放(iOS Safari) */
   input, select, textarea {
     font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 12px;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer components {
   .app-container {
-    @apply mx-auto w-full max-w-md min-h-screen bg-white relative flex flex-col;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.04);
+    /* 桌面端:模拟手机尺寸居中带阴影 */
+    /* 移动端(max-w-md 下):铺满屏幕,无边距无边框阴影 */
+    @apply mx-auto w-full max-w-[448px] min-h-screen bg-slate-50 relative flex flex-col;
+    box-shadow: 0 0 40px rgba(15, 23, 42, 0.06);
+    border-left: 1px solid rgba(226, 232, 240, 0.6);
+    border-right: 1px solid rgba(226, 232, 240, 0.6);
+    background-color: #fff;
+  }
+
+  @media (max-width: 448px) {
+    .app-container {
+      max-width: 100%;
+      box-shadow: none;
+      border-left: none;
+      border-right: none;
+      background: #ffffff;
+    }
   }
 
   .btn-primary {
@@ -47,7 +77,6 @@
 @keyframes progressFill {
   from { width: 0; }
 }
-
 .animate-progress {
   animation: progressFill 0.4s ease-out;
 }
@@ -63,16 +92,19 @@
     transform: translateY(0);
   }
 }
-
 .animate-fade-in-up {
   animation: fadeInUp 0.4s ease-out both;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out both;
+}
+
+/* Tailwind 渐变通过 class 注入,确保动态 color 情况下仍能渲染 */
+:root {
+  --tw-gradient-stops: rgba(99,102,241,1), rgba(99,102,241,1);
 }

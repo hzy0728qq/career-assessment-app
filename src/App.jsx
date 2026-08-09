@@ -10,7 +10,7 @@ export default function App() {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
-  // 是否显示底部导航：仅首页与历史页显示
+  // 是否显示底部导航：仅首页与历史页显示（HashRouter 下 pathname 与 BrowserRouter 一致，无需处理 hash）
   const showTabBar = ['/', '/history'].includes(location.pathname)
 
   return (
