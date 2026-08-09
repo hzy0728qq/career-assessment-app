@@ -1,0 +1,40 @@
+# =====================================================
+# Cloudflare Pages / Wrangler 配置
+# 支持两种部署方式:
+#   1. Git 集成:Cloudflare Pages 控制台 → Connect Git
+#      (Build command: npm run build, Output: dist, Node: 20)
+#   2. CLI 本地直传:
+#      npm i -g wrangler && wrangler login
+#      npm run build && wrangler pages deploy dist
+# =====================================================
+
+# Pages 项目名(对应 dash 上的子域名:career-assessment-app.pages.dev)
+name = "career-assessment-app"
+
+# 产品类型 Pages 静态站点
+pages_build_output_dir = "dist"
+
+# Pages 兼容性标志(启用新特性)
+compatibility_date = "2024-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============ 构建配置(Connect Git 集成时生效) ============
+[build]
+command = "npm run build"
+build_dir   = "dist"
+
+[build.environment]
+NODE_VERSION     = "20"
+NPM_FLAGS        = "--no-audit --no-fund"
+# Vite 生产模式
+NODE_ENV         = "production"
+
+# ============ 路由规则(同 public/_redirects,二者选一即可) ============
+# 这里额外声明一次是为了通过 wrangler CLI 部署时同样生效
+[[routes]]
+pattern = "/assets/*"
+custom_domain = true
+
+# ============ Pages 自动部署分支 ============
+# 可在 Cloudflare 控制台 → Pages → 项目 → Git 处查看/调整
+# 建议: main 分支 → Production,其它分支 → Preview

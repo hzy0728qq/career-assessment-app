@@ -2,13 +2,43 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <!-- PWA 基础 -->
+    <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="theme-color" content="#6366f1" />
+    <meta name="color-scheme" content="light only" />
+
+    <!-- iOS / Safari 移动端 PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="description" content="AI 职业测评 - 发现你的职业方向" />
-    <title>AI 职业测评</title>
+    <meta name="apple-mobile-web-app-title" content="职业规划助手" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.svg" />
+
+    <!-- Android Chrome 启动画面 -->
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- 移动端 viewport 严格适配 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+    <!-- SEO / Open Graph / Twitter Card -->
+    <meta name="description" content="AI 职业规划助手 - 3 分钟测评,AI 即时分析你的兴趣、能力、性格与工作方式,生成匹配度最高的职业推荐与成长建议,并可一键导出 PDF 报告。" />
+    <meta name="keywords" content="职业测评,职业规划,AI测评,职业方向,性格测试,MBTI,职业匹配,Holland" />
+    <meta name="author" content="career-assessment-app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AI 职业规划助手 - 发现你的职业方向" />
+    <meta property="og:description" content="3 分钟完成科学测评,AI 多维度分析,推荐最适合你的职业方向并生成 PDF 报告。" />
+    <meta property="og:image" content="./icons/icon-512.svg" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI 职业规划助手" />
+    <meta name="twitter:description" content="AI 驱动的职业测评与规划工具" />
+    <meta name="twitter:image" content="./icons/icon-512.svg" />
+
+    <!-- 隐私:本地存储,不发送数据 -->
+    <meta name="privacy-policy" content="所有数据仅存储于本地浏览器" />
+
+    <title>AI 职业规划助手 - 发现你的职业方向</title>
   </head>
   <body>
     <div id="root"></div>

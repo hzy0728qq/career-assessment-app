@@ -1,0 +1,24 @@
+# SPA 路由重写(Cloudflare Pages 原生支持)
+# 注意:HashRouter 已保证永不 404,这里作为 Browser 直接访问的双保险
+# 规则从上到下匹配,先放过静态资源与 PWA 关键文件,其余走 index.html
+
+# PWA 关键文件直接访问
+/sw.js                   /sw.js                         200
+/manifest.webmanifest    /manifest.webmanifest          200
+
+# 静态资源与常见后缀直接 200(Cloudflare 默认会直出,这里显式列出避免被下面 /* 覆盖)
+/assets/*                /assets/:splat                200
+/icons/*                 /icons/:splat                 200
+/*.svg                   /:splat.svg                   200
+/*.png                   /:splat.png                   200
+/*.jpg                   /:splat.jpg                   200
+/*.jpeg                  /:splat.jpeg                  200
+/*.css                   /:splat.css                   200
+/*.js                    /:splat.js                    200
+/*.woff2                 /:splat.woff2                 200
+/favicon.ico             /favicon.ico                  200
+/favicon.svg             /favicon.svg                  200
+/robots.txt              /robots.txt                   200
+
+# SPA fallback:所有其他路径回退到 index.html(200)
+/*                       /index.html                    200

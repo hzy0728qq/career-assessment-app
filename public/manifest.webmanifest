@@ -1,0 +1,51 @@
+{
+  "name": "AI 职业规划助手",
+  "short_name": "职业规划助手",
+  "description": "基于 AI 的职业测评与规划助手,3 分钟发现适合你的职业方向,生成 PDF 报告。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle", "education"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "立即测评",
+      "short_name": "开始测评",
+      "description": "快速开始职业测评",
+      "url": "./#/assessment",
+      "icons": [{ "src": "./icons/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "历史记录",
+      "short_name": "历史",
+      "description": "查看过去的测评报告",
+      "url": "./#/history",
+      "icons": [{ "src": "./icons/icon-192.svg", "sizes": "192x192" }]
+    }
+  ]
+}
